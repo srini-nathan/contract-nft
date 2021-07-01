@@ -12,6 +12,14 @@ import { config as dotenvConfig } from "dotenv";
 import { HardhatUserConfig } from "hardhat/config";
 import { NetworkUserConfig } from "hardhat/types";
 
+/**
+ * 
+ * PatentNFTData deployed to:  0xcbE2bd1EA12C1313957C7E46Af4fc4086D7EB0f4
+PatentNFTMarketplace deployed to:  0x6a551CE43964539AF08c9246A326e96705F18E67
+PatentNFTFactory deployed to:  0x1EB22047699187bD17f1b344dA1fA89413a5ed9C
+
+ */
+
 dotenvConfig({ path: resolve(__dirname, "./.env") });
 
 const chainIds = {
@@ -41,6 +49,7 @@ if (!process.env.INFURA_API_KEY) {
 
 function createTestnetConfig(network: keyof typeof chainIds): NetworkUserConfig {
   const url: string = "https://" + network + ".infura.io/v3/" + infuraApiKey;
+  
   return {
     accounts: {
       count: 10,
@@ -68,9 +77,9 @@ const config: HardhatUserConfig = {
       },
       chainId: chainIds.hardhat,
     },
-    goerli: createTestnetConfig("goerli"),
-    kovan: createTestnetConfig("kovan"),
-    rinkeby: createTestnetConfig("rinkeby"),
+    // goerli: createTestnetConfig("goerli"),
+    // kovan: createTestnetConfig("kovan"),
+    // rinkeby: createTestnetConfig("rinkeby"),
     ropsten: createTestnetConfig("ropsten"),
   },
   paths: {
@@ -80,7 +89,7 @@ const config: HardhatUserConfig = {
     tests: "./test",
   },
   solidity: {
-    version: "0.8.4",
+    version: "0.8.5",
     settings: {
       metadata: {
         // Not including the metadata hash
